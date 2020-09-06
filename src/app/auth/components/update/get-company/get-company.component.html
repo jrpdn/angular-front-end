@@ -5,11 +5,15 @@
               (ngSubmit)="onSubmit(f)">
 <div class="form-group col-md-6">
     <label for="inputcname">Company Name</label>
-    <input type="text" class="form-control" id="inputcname" [(ngModel)]="companyname" name="cname">
+    <input type="number" class="form-control" id="inputcname" [(ngModel)]="companycode" name="cname">
 </div>
 <button type="submit"
                     [disabled]="f.invalid"
-                    class="btn btn-primary">GetIPo</button>
+                    class="btn btn-primary">GetCompany</button>
+                    &nbsp;&nbsp;&nbsp;
+                    <button type="submit" (click)="onDelete()"
+                    [disabled]="f.invalid"
+                    class="btn btn-primary">DeleteCompany</button>
         </form>
     </div>
 </div>

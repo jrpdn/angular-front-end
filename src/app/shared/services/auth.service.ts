@@ -15,6 +15,7 @@ export class AuthService {
   authUrl1 = "http://localhost:8082/";
 
   token : any;
+  const headers = new HttpHeaders();
   constructor(private http : HttpClient) { }
 
   login(model: any) {
@@ -27,45 +28,55 @@ export class AuthService {
 
   tokenStorage(model : any) {
     this.token ='Bearer '+ model;
+    this.headers.set("Authorization",this.token);
   }
 
   updateIpo(model: any) {
-      const headers = new HttpHeaders().set("Authorization",this.token);
-      return this.http.put(this.authUrl1 + 'ipos/update', model); 
+      return this.http.put(this.authUrl1 + 'ipos/update', model,{headers: this.headers,responseType:'json'}); 
   }
 
   getIpo(model : any) {
-    const headers = new HttpHeaders().set("Authorization",this.token);
-    return this.http.post<IpodetailsModule[]>(this.authUrl1 + 'ipos/company',model,{headers: headers,responseType:'json'});
+    return this.http.post<IpodetailsModule[]>(this.authUrl1 + 'ipos/company',model,{headers: this.headers,responseType:'json'});
   }
 
+  deleteIpo(model : any) {
+    return this.http.delete(this.authUrl1+'ipos/delete/'+model,{headers: this.headers,responseType:'json'});
+  }
+    
+
   updateCompany(model: any) {
-    const headers = new HttpHeaders().set("Authorization",this.token);
-    return this.http.put(this.authUrl1 + 'companies/update', model,{headers: headers,responseType:'json'}); 
+    return this.http.put(this.authUrl1 + 'companies/update', model,{headers: this.headers,responseType:'json'}); 
 }
    
 getCompany(model : any) {
-  const headers = new HttpHeaders().set("Authorization",this.token);
-  return this.http.post<CompanydetailsModule[]>(this.authUrl1 + 'companies/companyName',model,{headers: headers,responseType:'json'});
+  return this.http.post<CompanydetailsModule[]>(this.authUrl1 + 'companies/name',model,{headers: this.headers,responseType:'json'});
+}
+
+deleteCompany(model : any) {
+  return this.http.delete(this.authUrl1+'/companies/delete/'+model,{headers: this.headers,responseType:'json'});
 }
   
 getStocks(model : any) {
-  const headers = new HttpHeaders().set("Authorization",this.token);
-  return this.http.post<StockdetailsModule[]>(this.authUrl1 + 'stocks/seName',model,{headers: headers,responseType:'json'});
+  return this.http.post<StockdetailsModule[]>(this.authUrl1 + '/sp/id/'+model,{headers: this.headers,responseType:'json'});
 }
 
 updateStocks(model: any) {
-  const headers = new HttpHeaders().set("Authorization",this.token);
-  return this.http.put(this.authUrl1 + 'stocks/update', model,{headers: headers,responseType:'json'}); 
+  return this.http.put(this.authUrl1 + 'sp/update', model,{headers: this.headers,responseType:'json'}); 
 }
 
-getStockExchange(model : any) {
-  const headers = new HttpHeaders().set("Authorization",this.token);
-  return this.http.post<SectorexchangeModule[]>(this.authUrl1 + 'se',model,{headers: headers,responseType:'json'});
+deleteStocks(model : any) {
+  return this.http.delete(this.authUrl1 + 'sp/delete/'+ model,{headers: this.headers,responseType:'json'});
+}
+
+getStockExchange() {
+  return this.http.post<SectorexchangeModule[]>(this.authUrl1 + 'se',{headers: this.headers,responseType:'json'});
 }
 
 updateStockExchange(model: any) {
-  const headers = new HttpHeaders().set("Authorization",this.token);
-  return this.http.put(this.authUrl1 + 'se/update', model,{headers: headers,responseType:'json'}); 
+  return this.http.put(this.authUrl1 + 'se/update', model,{headers: this.headers,responseType:'json'}); 
+}
+
+deleteStockExchange(model : any) {
+  return this.http.delete(this.authUrl1 + 'sp/delete/'+ model,{headers: this.headers,responseType:'json'});
 }
 }

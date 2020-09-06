@@ -13,6 +13,7 @@ export class GetIpoComponent implements OnInit {
   ipodetails : IpodetailsModule[];
   isPresent:Boolean = false;
   companyname : Text;
+  id : number;
 
   request : any;
   response : any;
@@ -34,4 +35,15 @@ export class GetIpoComponent implements OnInit {
       // });
   }
 
+  onDelete() {
+    this.request = {
+      "id" : this.id
+    }
+    const IpoDeleteObserver = {
+      next: x => console.log('Deleted the Ipo'),
+      error: err => console.log(err)
+    };
+    this.authService.deleteIpo(this.request).subscribe(IpoDeleteObserver);
+    this.request = null;
+  }
 }

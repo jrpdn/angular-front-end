@@ -12,7 +12,7 @@ export class GetCompanyComponent implements OnInit {
 
   companyDetails : CompanydetailsModule[];
   isPresent:Boolean = false;
-  companyname : Text;
+  companycode : number;
 
   request : any;
   response : any;
@@ -24,7 +24,7 @@ export class GetCompanyComponent implements OnInit {
   }
   onSubmit(f:NgForm) {
       this.request = {
-        "companyName" : this.companyname
+        "companyCode" : this.companycode
       }
       let dat = this.authService.getCompany(this.request);
       dat.subscribe(data=>this.companyDetails=data,);
@@ -33,5 +33,14 @@ export class GetCompanyComponent implements OnInit {
       //    this.responsepage.push(element.remarks)
       // });
   }
-
+  onDelete() {
+    this.request = {
+      "companyCode" : this.companycode
+    }
+    const CompanyDeleteObserver = {
+      next: x => console.log('Deleted the Company'),
+      error: err => console.log(err)
+    };
+    this.authService.deleteCompany(this.request).subscribe(CompanyDeleteObserver);
+  }
 }

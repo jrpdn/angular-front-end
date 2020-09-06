@@ -11,27 +11,22 @@ import { NgForm } from '@angular/forms';
 export class GetStocksComponent implements OnInit {
 
   stockDetails : StockdetailsModule[]=[];
-  isPresent:Boolean = false;
-  companyname : Text;
-  stocktemp : StockdetailsModule;
-  request : any;
-  response : any;
+  
+  stockid : number;
 
-  date = new Date();
-  timestamp = this.date.getTime();
-  responsepage : string[] = [];
+  companyCode : number;
+  
+  request : any;
+  
+
+
   constructor(private authService : AuthService) { }
 
   ngOnInit(): void {
   }
   onSubmit(f:NgForm) {
-      this.stocktemp = {
-        id:1,
-        companyCode:123,
-        currentPrice:1000,
-        seName:'NSE',
-        date: this.date
-      }
+    
+      this.request = this.stockid;
       // this.stockDetails[0] = this.stocktemp
       // this.request = {
       //   "companyName" : this.companyname
@@ -42,5 +37,17 @@ export class GetStocksComponent implements OnInit {
       //  this.response.Object_forEach(element => {
       //    this.responsepage.push(element.remarks)
       // });
+  }
+
+  onDelete() {
+    this.request = {
+      "companyCode" : this.companyCode
+    }
+    const StockDeleteObserver = {
+      next: x => console.log('Deleted the Stocks'),
+      error: err => console.log(err)
+    };
+    this.authService.deleteStocks(this.request).subscribe(StockDeleteObserver);
+    this.request = null;
   }
 }

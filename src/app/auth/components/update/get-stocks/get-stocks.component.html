@@ -4,12 +4,20 @@
         <form #f="ngForm"
               (ngSubmit)="onSubmit(f)">
 <div class="form-group col-md-6">
-    <label for="inputcname">Company Name</label>
-    <input type="text" class="form-control" id="inputcname" [(ngModel)]="companyname" name="cname">
+    <label for="inputcname">Stock Id</label>
+    <input type="number" class="form-control" id="inputcname" [(ngModel)]="stockid" name="cname">
 </div>
 <button type="submit"
                     [disabled]="f.invalid"
                     class="btn btn-primary">GetIPo</button>
+ <h3>Delete Stock</h3>
+<div class="form-group col-md-6">
+                                            <label for="inputcname">Company Code</label>
+                                            <input type="text" class="form-control" id="inputcname" [(ngModel)]="companyCode" name="cname">
+                                        </div>
+<button type="submit" (click)="onDelete()"
+                                        [disabled]="f.invalid"
+                                        class="btn btn-primary">DeleteStocks</button>
         </form>
     </div>
 </div>
