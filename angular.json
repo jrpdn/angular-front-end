@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -92,6 +93,11 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "../LOGINPAGE/node_modules/bootstrap/scss/bootstrap.scss",
+              "../LOGINPAGE/node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
+              "../LOGINPAGE/node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
+              "../LOGINPAGE/node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
               "src/styles.scss"
             ],
             "scripts": []
@@ -123,6 +129,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "loginpage"
 }

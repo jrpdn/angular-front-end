@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-md-6 offset-md-3 mt-4">
+    <form #f="ngForm"
+    (ngSubmit)="onSubmit(f)">
+        <h3>Update Stocks</h3>
+        <div class="form-group col-md-6">
+            <label for="inputcid">Company Id</label>
+            <input type="number" class="form-control" id="inputcid" [(ngModel)]="stockDetails.id" name="cid">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputcname">Company Name</label>
+            <input type="text" class="form-control" id="inputcname" [(ngModel)]="stockDetails.companyCode" name="cname">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputexchange">Turnover</label>
+            <input type="number" class="form-control" id="inputexchange" [(ngModel)]="stockDetails.currentPrice" name="sename">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputprice">CEO</label>
+            <input type="datetime-local" step="0.01" class="form-control" id="inputprice" [(ngModel)]="stockDetails.date" name="ppps">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputtotal">Board of Directors</label>
+            <input type="text" class="form-control" id="inputtotal" [(ngModel)]="stockDetails.seName" name="ttns">
+        </div>
+        <button type="submit"
+                        [disabled]="f.invalid"
+                        class="btn btn-primary">Update</button>
+                    </form>
+    </div>
+    </div>
+    
