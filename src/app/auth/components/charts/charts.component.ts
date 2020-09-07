@@ -1,5 +1,5 @@
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { Timestamp } from 'rxjs';
-import { StockdetailsModule } from 'src/app/stockdetails/stockdetails.module';
 import { Component, OnInit } from '@angular/core';
 import * as FusionCharts from 'fusioncharts';
 
@@ -10,21 +10,32 @@ import * as FusionCharts from 'fusioncharts';
 })
 export class ChartsComponent implements OnInit {
 
-  value1 = (<HTMLSelectElement>document.getElementById('inputcs1')).value;
-  value2 = (<HTMLSelectElement>document.getElementById('inputse1')).value;
-  stockdetails1 : StockdetailsModule[];
-  stockdetails2 : StockdetailsModule[];
-  param1 : Text;
-
-  request1 :any;
-  from : Timestamp<Date>;
-  to : Timestamp<Date>;
+  value1: string = '';
+  value2: string = '';
+  //event handler for the select element's change event
 
 
-  val1 = (<HTMLSelectElement>document.getElementById('inputcs2')).value;
-  val2 = (<HTMLSelectElement>document.getElementById('inputse2')).value;
+  //value1 = (<HTMLSelectElement>document.getElementById('inputcs1')).value;
+  // value2 = (<HTMLSelectElement>document.getElementById('inputse1')).value;
+  stockdetails1 : any;
+  stockdetails2 : any;
+
+  data1 : any;
+  data2 : any;
+   param1 : Text;
+
+   request1 :any;
+   from : Timestamp<Date>;
+   to : Timestamp<Date>;
+
+
+  val1 : string= '';
+  val2 : string = ''
   param2 : Text;
   request2 : any;
+
+  str : string[] = [];
+  check : number = 1;
 
   dataSource: object;
   dataSources: object;
@@ -37,24 +48,24 @@ export class ChartsComponent implements OnInit {
 //     { id:1, companyCode:"1", seName:'1', currentPrice:145, date: "06-01-2020" },
 //     { id:1, companyCode:"1", seName:'1', currentPrice:100, date: "07-01-2020" },
 //   ];
-  data1 = [
-    { "id":1, "companyCode":"1", "seName":'1', "currentPrice":129, "Time": "01-01-2020" },
-    { "id":1, "companyCode":"1", "seName":'1', "currentPrice":12, "Time": "02-01-2020" },
-    { "id":1, "companyCode":"1", "seName":'1', "currentPrice":125, "Time": "03-01-2020" },
-    { "id":1, "companyCode":"1", "seName":'1', "currentPrice":121, "Time": "04-01-2020" },
-    { "id":1, "companyCode":"1", "seName":'1', "currentPrice":120, "Time": "05-01-2020" },
-    { "id":1, "companyCode":"1", "seName":'1', "currentPrice":145, "Time": "06-01-2020" },
-    { "id":1, "companyCode":"1", "seName":'1', "currentPrice":100, "Time": "07-01-2020" },
-  ];
-  data2 = [
-    { "id":1, "companyCode":"1", "seName":'1', "currentPrice":129, "Time": "01-01-2020" },
-    { "id":1, "companyCode":"1", "seName":'1', "currentPrice":120, "Time": "02-01-2020" },
-    { "id":1, "companyCode":"1", "seName":'1', "currentPrice":25, "Time": "03-01-2020" },
-    { "id":1, "companyCode":"1", "seName":'1', "currentPrice":121, "Time": "04-01-2020" },
-    { "id":1, "companyCode":"1", "seName":'1', "currentPrice":220, "Time": "05-01-2020" },
-    { "id":1, "companyCode":"1", "seName":'1', "currentPrice":145, "Time": "06-01-2020" },
-    { "id":1, "companyCode":"1", "seName":'1', "currentPrice":100, "Time": "07-01-2020" },
-  ];
+  // data1 = [
+  //   { "id":1, "companyCode":"1", "seName":'1', "currentPrice":129, "Time": "01-01-2020" },
+  //   { "id":1, "companyCode":"1", "seName":'1', "currentPrice":12, "Time": "02-01-2020" },
+  //   { "id":1, "companyCode":"1", "seName":'1', "currentPrice":125, "Time": "03-01-2020" },
+  //   { "id":1, "companyCode":"1", "seName":'1', "currentPrice":121, "Time": "04-01-2020" },
+  //   { "id":1, "companyCode":"1", "seName":'1', "currentPrice":120, "Time": "05-01-2020" },
+  //   { "id":1, "companyCode":"1", "seName":'1', "currentPrice":145, "Time": "06-01-2020" },
+  //   { "id":1, "companyCode":"1", "seName":'1', "currentPrice":100, "Time": "07-01-2020" },
+  // ];
+  // data2 = [
+  //   { "id":1, "companyCode":"1", "seName":'1', "currentPrice":129, "Time": "01-01-2020" },
+  //   { "id":1, "companyCode":"1", "seName":'1', "currentPrice":120, "Time": "02-01-2020" },
+  //   { "id":1, "companyCode":"1", "seName":'1', "currentPrice":25, "Time": "03-01-2020" },
+  //   { "id":1, "companyCode":"1", "seName":'1', "currentPrice":121, "Time": "04-01-2020" },
+  //   { "id":1, "companyCode":"1", "seName":'1', "currentPrice":220, "Time": "05-01-2020" },
+  //   { "id":1, "companyCode":"1", "seName":'1', "currentPrice":145, "Time": "06-01-2020" },
+  //   { "id":1, "companyCode":"1", "seName":'1', "currentPrice":100, "Time": "07-01-2020" },
+  // ];
   data6 = [
     [ 1, "1", '1',129, "01-01-2020" ],
     [ 1, "1", '1', 12,  "02-01-2020" ],
@@ -96,10 +107,6 @@ export class ChartsComponent implements OnInit {
       "name": "Time",
       "type": "date",
       "format": "%d-%m-%Y"
-    },
-    {
-      "name": "CS",
-      "type": "string"
     }
   ];
   chart="line";
@@ -110,7 +117,7 @@ export class ChartsComponent implements OnInit {
   };
   
     
-  constructor() {
+  constructor(private authService : AuthService) {
     
    }
    /*fetchData() {
@@ -157,9 +164,24 @@ export class ChartsComponent implements OnInit {
     this.plotchart();
   }
   toggleplot(){
+    this.str = ["companyCode","sector"];
     this.request1 = {
-      "companyCode" : this.param1
-    }
+       "companyCode" : this.param1,
+       "seName" : this.value2,
+       "startDate" : this.from,
+       "endDate" : this.to
+     }
+
+     this.request2 = {
+       "companyCode" : this.param2,
+       "seName" : this.val2,
+       "startDate" : this.from,
+       "endDate" : this.to
+     }
+
+    // if(this.value1==='Sector') {
+    //   this.check = 0
+    // }
 
     this.plot=!this.plot;
     if(this.plot==false){
@@ -173,10 +195,15 @@ export class ChartsComponent implements OnInit {
     // if(this.single==false && this.data7[0].length<6)
     // for(var i=0;i<this.data7.length;i++) this.data7[i].push("Company/Sector 2");
     if(this.plot){
-      this.data1;
-      this.data2;
-      for(var i=0;i<this.data1.length;i++) this.data1[i]["CS"]="Company/Sector 1";
-      for(var i=0;i<this.data2.length;i++) this.data2[i]["CS"]="Company/Sector 2";
+      let dat = this.authService.getStocksByCodeAndName(this.request1);
+      dat.subscribe(data=>this.stockdetails1=data);
+      let dat1 = this.authService.getStocksByCodeAndName(this.request2);
+      dat1.subscribe(data=>this.stockdetails2=data);
+      
+      this.data1=this.stockdetails1;
+      this.data2=this.stockdetails2;
+      // for(var i=0;i<this.data1.length;i++) this.data1[i]["CS"]="Company/Sector 1";
+      // for(var i=0;i<this.data2.length;i++) this.data2[i]["CS"]="Company/Sector 2";
       this.plotchart();
     }
     

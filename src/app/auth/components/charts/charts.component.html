@@ -1,14 +1,14 @@
-<div *ngIf="plot">
+<div>
     <div >
-        <label for="inputcs1">Select Company/Sector</label>
+        <label for="inputcs1">Select Company /Sector</label>
         <!-- <input type="text" class="form-control" id="inputcs1"> -->
-        <select id="inputcs1" class="form-control col-md-3">
+        <select id="inputcs1" class="form-control col-md-3" [(ngModel)]='value1'>
             <option>Company</option>
            <option>Sector</option>
         </select>
         <label for="inputse1">Select Stock Exchange</label>
         <!-- <input type="text" class="form-control" id="inputcs1"> -->
-        <select id="inputse1" class="form-control col-md-3">
+        <select id="inputse1" class="form-control col-md-3" [(ngModel)]='value2'>
             <option>BSE</option>
            <option>NSE</option>
         </select>
@@ -26,13 +26,13 @@
     <div *ngIf="!single">
         <label for="inputcs2">Select Company/Sector 2</label>
         <!-- <input type="text" class="form-control" id="inputcs1"> -->
-        <select id="inputcs2" class="form-control col-md-3">
+        <select id="inputcs2" class="form-control col-md-3" [(ngModel)]='val1'>
             <option>Company</option>
            <option>Sector</option>
         </select>
         <label for="inputse2">Select Stock Exchange</label>
         <!-- <input type="text" class="form-control" id="inputcs1"> -->
-        <select id="inputse2" class="form-control col-md-3">
+        <select id="inputse2" class="form-control col-md-3" [(ngModel)]='val2'>
             <option>BSE</option>
            <option>NSE</option>
         </select>

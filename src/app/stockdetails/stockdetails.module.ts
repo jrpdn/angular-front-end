@@ -1,6 +1,6 @@
+import { Timestamp } from 'rxjs';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Timestamp } from 'rxjs';
 
 
 
@@ -11,9 +11,9 @@ import { Timestamp } from 'rxjs';
   ]
 })
 export class StockdetailsModule {
-  id: number;
-  companyCode: number;
-  seName: string;
-  currentPrice: number;
-  date : Timestamp<Date>;
+  id : number;
+  companyCode : string;
+  seName : string;
+  currentPrice : number;
+  date : Timestamp<Date>
  }

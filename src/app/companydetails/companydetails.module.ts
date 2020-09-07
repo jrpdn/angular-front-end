@@ -18,7 +18,7 @@ export class CompanydetailsModule {
   boardOfDirectors : string[];
   sector: string;
   about: string;
-  companyCode: number;
+  companyCode: string;
 }
 
 

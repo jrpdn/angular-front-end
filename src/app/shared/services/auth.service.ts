@@ -1,10 +1,10 @@
+import { StockdetailsModule } from 'src/app/stockdetails/stockdetails.module';
 import { SectorexchangeModule } from './../../sectorexchange/sectorexchange.module';
 import { CompanydetailsModule } from './../../companydetails/companydetails.module';
 import { IpodetailsModule } from './../../ipodetails/ipodetails.module';
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
-import { StockdetailsModule } from 'src/app/stockdetails/stockdetails.module';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,7 @@ export class AuthService {
 
   authUrl = "http://localhost:8080/";
   authUrl1 = "http://localhost:8082/";
+  authUrl2 = "http://localhost:8083/";
 
   token : any;
   headers = new HttpHeaders();
@@ -29,6 +30,10 @@ export class AuthService {
   tokenStorage(model : any) {
     this.token ='Bearer '+ model;
     this.headers.set("Authorization",this.token);
+  }
+
+  deletetokenStorage() {
+    this.token ='';
   }
 
   updateIpo(model: any) {
@@ -52,24 +57,24 @@ export class AuthService {
     return this.http.put(this.authUrl1 + 'companies/update', model,{headers: this.headers,responseType:'json'}); 
 }
    
-getCompany(model : any) {
-  return this.http.post<CompanydetailsModule[]>(this.authUrl1 + 'companies/name',model,{headers: this.headers,responseType:'json'});
+getCompany(model : string) {
+  return this.http.get<CompanydetailsModule[]>(this.authUrl1 + 'companies/code/${model}',{headers: this.headers,responseType:'json'});
 }
 
-deleteCompany(model : any) {
-  return this.http.delete(this.authUrl1+'/companies/delete/'+model,{headers: this.headers,responseType:'json'});
+deleteCompany(model : string) {
+  return this.http.delete(this.authUrl1+'companies/delete/${model}',{headers: this.headers});
 }
   
 getAllCompanies() {
   return this.http.get<CompanydetailsModule[]>(this.authUrl1 + 'companies',{headers: this.headers,responseType:'json'});
 }
 
-getStocks(model : any) {
-  return this.http.post<StockdetailsModule[]>(this.authUrl1 + 'sp/id/'+model,{headers: this.headers,responseType:'json'});
+getStocks(model : number) {
+  return this.http.post<StockdetailsModule[]>(this.authUrl1 + 'sp/company_code/se_name' , model,{headers: this.headers,responseType:'json'});
 }
 
 getStocksByCodeAndName(model : any) {
-  return this.http.post<StockdetailsModule[]>(this.authUrl1 + 'sp/company_code/se_name/duration'+model,{headers: this.headers,responseType:'json'});
+  return this.http.post(this.authUrl1 + 'sp/company_code/se_name/duration',model,{headers: this.headers,responseType:'json'});
 }
 
 updateStocks(model: any) {
@@ -77,7 +82,7 @@ updateStocks(model: any) {
 }
 
 deleteStocks(model : any) {
-  return this.http.delete(this.authUrl1 + 'sp/delete/'+ model,{headers: this.headers,responseType:'json'});
+  return this.http.delete(this.authUrl1 + 'sp/delete',model);
 }
 
 getAllStocks() {
@@ -85,18 +90,18 @@ getAllStocks() {
 }
 
 getStockExchange() {
-  return this.http.post<SectorexchangeModule[]>(this.authUrl1 + 'se',{headers: this.headers,responseType:'json'});
+  return this.http.post<SectorexchangeModule[]>(this.authUrl2 + 'se',{headers: this.headers,responseType:'json'});
 }
 
 updateStockExchange(model: any) {
-  return this.http.put(this.authUrl1 + 'se/update', model,{headers: this.headers,responseType:'json'}); 
+  return this.http.put(this.authUrl2 + 'se/update', model,{headers: this.headers,responseType:'json'}); 
 }
 
 deleteStockExchange(model : any) {
-  return this.http.delete(this.authUrl1 + 'se/delete/'+ model,{headers: this.headers,responseType:'json'});
+  return this.http.delete(this.authUrl2 + 'se/delete/'+ model,{headers: this.headers,responseType:'json'});
 }
 
 getAllStockExchange() {
-  return this.http.get<SectorexchangeModule[]>(this.authUrl1 + 'se',{headers: this.headers,responseType:'json'});
+  return this.http.get<SectorexchangeModule[]>(this.authUrl2 + 'se',{headers: this.headers,responseType:'json'});
 }
 }

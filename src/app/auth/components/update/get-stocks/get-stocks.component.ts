@@ -1,8 +1,9 @@
+
 import { Timestamp } from 'rxjs';
-import { StockdetailsModule } from './../../../../stockdetails/stockdetails.module';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { NgForm } from '@angular/forms';
+import { StockdetailsModule } from 'src/app/stockdetails/stockdetails.module';
 @Component({
   selector: 'app-get-stocks',
   templateUrl: './get-stocks.component.html',
@@ -10,11 +11,13 @@ import { NgForm } from '@angular/forms';
 })
 export class GetStocksComponent implements OnInit {
 
-  stockDetails : StockdetailsModule[]=[];
+  stockDetails : StockdetailsModule[];
   
-  stockid : number;
+  companyCode : String;
 
-  companyCode : number;
+  seName : string;
+
+  seName1 : string
   
   request : any;
   
@@ -28,7 +31,10 @@ export class GetStocksComponent implements OnInit {
   }
   onSubmit(f:NgForm) {
       this.headers = this.head;
-      this.request = this.stockid;
+      this.request = {
+        "companyCode" : this.companyCode,
+        "seName" : this.seName
+      }
       // this.stockDetails[0] = this.stocktemp
       // this.request = {
       //   "companyName" : this.companyname
@@ -42,8 +48,9 @@ export class GetStocksComponent implements OnInit {
   }
 
   onDelete() {
+    this.request='';
     this.request = {
-      "companyCode" : this.companyCode
+      "seName" : this.seName1
     }
     const StockDeleteObserver = {
       next: x => console.log('Deleted the Stocks'),

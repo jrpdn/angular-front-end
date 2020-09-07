@@ -1,3 +1,4 @@
+import { LogoutComponent } from './components/logout/logout.component';
 import { ChartsComponent } from './components/charts/charts.component';
 import { DisplayStockExchangeComponent } from './components/userfunctionalities/display-stock-exchange/display-stock-exchange.component';
 import { DisplayStockComponent } from './components/userfunctionalities/display-stock/display-stock.component';
@@ -47,7 +48,9 @@ const routes: Routes = [
   {path:'userpage/getStocks',component:GetStocksComponent},
   {path:'userpage/getStockExchange',component:GetStockExchangeComponent},
   {path:'userpage/managestockexchange',component:ManageexchangeComponent},
-  {path:'adminpage/getCharts',component:ChartsComponent}
+  {path:'adminpage/getCharts',component:ChartsComponent},
+  {path:'userpage/getCharts',component:ChartsComponent},
+  {path:'logout',component:LogoutComponent}
 ];
 
 @NgModule({

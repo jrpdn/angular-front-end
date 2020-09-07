@@ -1,21 +1,29 @@
+<app-logoutbt></app-logoutbt>
 <div class="row">
     <div class="col-md-6 offset-md-3 mt-4">
         <h3>Display Stocks</h3>
         <form #f="ngForm"
               (ngSubmit)="onSubmit(f)">
 <div class="form-group col-md-6">
-    <label for="inputcname">Stock Id</label>
-    <input type="number" class="form-control" id="inputcname" [(ngModel)]="stockid" name="cname">
+    <label for="inputcname">Company Code</label>
+    <input type="text" class="form-control" id="inputcname" [(ngModel)]="companyCode" name="cname">
+</div>
+<div class="form-group col-md-6">
+    <label for="inputcname">Se Name</label>
+    <input type="text" class="form-control" id="inputcname" [(ngModel)]="seName" name="cname">
 </div>
 <button type="submit"
                     [disabled]="f.invalid"
                     class="btn btn-primary">GetIPo</button>
+        </form>
+        <form #f="ngForm"
+              (ngSubmit)="onDelete()">
  <h3>Delete Stock</h3>
 <div class="form-group col-md-6">
-                                            <label for="inputcname">Company Code</label>
-                                            <input type="text" class="form-control" id="inputcname" [(ngModel)]="companyCode" name="cname">
+                                            <label for="inputcname">Se Name</label>
+                                            <input type="text" class="form-control" id="inputcname" [(ngModel)]="seName1" name="cname">
                                         </div>
-<button type="submit" (click)="onDelete()"
+<button type="submit" 
                                         [disabled]="f.invalid"
                                         class="btn btn-primary">DeleteStocks</button>
         </form>

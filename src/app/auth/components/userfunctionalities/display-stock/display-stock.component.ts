@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import { StockdetailsModule } from 'src/app/stockdetails/stockdetails.module';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { NgForm } from '@angular/forms';
 
@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
 })
 export class DisplayStockComponent implements OnInit {
 
-  stockDetails : StockdetailsModule[]=[];
+  stockDetails : StockdetailsModule[] = [];
   
   stockid : number;
   
