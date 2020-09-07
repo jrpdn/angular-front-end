@@ -11,18 +11,19 @@ import { NgForm } from '@angular/forms';
 export class GetCompanyComponent implements OnInit {
 
   companyDetails : CompanydetailsModule[];
-  isPresent:Boolean = false;
   companycode : number;
 
   request : any;
   response : any;
 
-  responsepage : string[] = [];
+  head = ['companyId','companyName','turnover','ceo','boardOfDirectors','sector','about','companyCode'];
+  headers = [];
   constructor(private authService : AuthService) { }
 
   ngOnInit(): void {
   }
   onSubmit(f:NgForm) {
+    this.headers = this.head
       this.request = {
         "companyCode" : this.companycode
       }

@@ -4,16 +4,18 @@
         <form #f="ngForm"
               (ngSubmit)="onSubmit(f)">
 <div class="form-group col-md-6">
-    <label for="inputcname">Company Name</label>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" class="form-control" id="inputcname" [(ngModel)]="companycode" name="cname">
+    <label for="inputcname">Company Code</label>
+    <input type="number" class="form-control" id="inputcname" [(ngModel)]="companycode" name="cname">
 </div>
+&nbsp;&nbsp;&nbsp;
 <button type="submit"
                     [disabled]="f.invalid"
                     class="btn btn-primary">GetCompany</button>
-                    &nbsp;&nbsp;&nbsp;
-                    <button type="submit" (click)="onDelete()"
+                    <br><br><hr>
+                    <label for="inputcname">Display All Companies</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="submit" (click)="onAllCompanies()"
                     [disabled]="f.invalid"
-                    class="btn btn-primary">DeleteCompany</button>
+                    class="btn btn-primary">Display</button>
         </form>
     </div>
 </div>

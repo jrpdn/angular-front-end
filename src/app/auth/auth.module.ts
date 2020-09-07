@@ -1,3 +1,4 @@
+import { FusionChartsModule } from 'angular-fusioncharts';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,14 +20,31 @@ import { GetCompanyComponent } from './components/update/get-company/get-company
 import { GetStocksComponent } from './components/update/get-stocks/get-stocks.component';
 import { ManagestocksComponent } from './components/managestocks/managestocks.component';
 import { GetStockExchangeComponent } from './components/update/get-stock-exchange/get-stock-exchange.component';
+import { DisplayComapnyComponent } from './components/userfunctionalities/display-comapny/display-comapny.component';
+import { DisplayStockComponent } from './components/userfunctionalities/display-stock/display-stock.component';
+import { DisplayStockExchangeComponent } from './components/userfunctionalities/display-stock-exchange/display-stock-exchange.component';
+import { DisplayIpoComponent } from './components/userfunctionalities/display-ipo/display-ipo.component';
+import { ChartsComponent } from './components/charts/charts.component';
+
+
+import { TimeSeries } from 'fusioncharts/viz/timeseries';
+import * as FusionCharts from 'fusioncharts';
+import * as Charts from 'fusioncharts/fusioncharts.charts';
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import * as TimeSerie from 'fusioncharts/fusioncharts.timeseries';
+
+FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, TimeSerie);
+
+
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, ResetPasswordComponent, UserpageComponent, AdminpageComponent, ManagecompanyComponent, ManageexchangeComponent, ManageipoComponent, ProfileComponent, IpoComponent, GetIpoComponent, GetCompanyComponent, GetStocksComponent, ManagestocksComponent, GetStockExchangeComponent],
+  declarations: [LoginComponent, RegisterComponent, ResetPasswordComponent, UserpageComponent, AdminpageComponent, ManagecompanyComponent, ManageexchangeComponent, ManageipoComponent, ProfileComponent, IpoComponent, GetIpoComponent, GetCompanyComponent, GetStocksComponent, ManagestocksComponent, GetStockExchangeComponent, DisplayComapnyComponent, DisplayStockComponent, DisplayStockExchangeComponent, DisplayIpoComponent, ChartsComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    FusionChartsModule
   ],
   exports: [
     LoginComponent, RegisterComponent, ResetPasswordComponent

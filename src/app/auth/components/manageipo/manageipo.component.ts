@@ -13,6 +13,8 @@ export class ManageipoComponent implements OnInit {
   constructor(private authService:AuthService) { }
   ipodetails : IpodetailsModule;
 
+  
+
   ngOnInit(): void {
   }
   onSubmit(f: NgForm) {

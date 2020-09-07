@@ -1,3 +1,8 @@
+import { ChartsComponent } from './components/charts/charts.component';
+import { DisplayStockExchangeComponent } from './components/userfunctionalities/display-stock-exchange/display-stock-exchange.component';
+import { DisplayStockComponent } from './components/userfunctionalities/display-stock/display-stock.component';
+import { DisplayComapnyComponent } from './components/userfunctionalities/display-comapny/display-comapny.component';
+import { DisplayIpoComponent } from './components/userfunctionalities/display-ipo/display-ipo.component';
 import { GetStockExchangeComponent } from './components/update/get-stock-exchange/get-stock-exchange.component';
 import { GetCompanyComponent } from './components/update/get-company/get-company.component';
 import { GetStocksComponent } from './components/update/get-stocks/get-stocks.component';
@@ -23,7 +28,15 @@ const routes: Routes = [
   {path:'register', component:RegisterComponent},
   {path:'reset-password',component:ResetPasswordComponent},
   {path:'userpage',component:UserpageComponent},
-  {path:'adminpage',component:AdminpageComponent,canActivate:[AuthGuardService]},
+  {path:'adminpage',component:AdminpageComponent,
+    children: [
+      {path:'getIpo',component:DisplayIpoComponent},
+      {path:'getProfile',component:ProfileComponent},
+      {path:'userCompany',component:DisplayComapnyComponent},
+      {path:'userStocks',component:DisplayStockComponent},
+      {path:'getStockExchange',component:DisplayStockExchangeComponent}
+    ]
+},
   {path:'userpage/getIpo',component:GetIpoComponent},
   {path:'userpage/exchange', component:ManageexchangeComponent},
   {path:'userpage/profile', component:ProfileComponent},
@@ -33,12 +46,12 @@ const routes: Routes = [
   {path:'userpage/managestocks',component:ManagestocksComponent},
   {path:'userpage/getStocks',component:GetStocksComponent},
   {path:'userpage/getStockExchange',component:GetStockExchangeComponent},
-  {path:'userpage/managestockexchange',component:ManageexchangeComponent}
+  {path:'userpage/managestockexchange',component:ManageexchangeComponent},
+  {path:'adminpage/getCharts',component:ChartsComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-providers: [AuthGuardService]
 })
 export class AuthRoutingModule { }

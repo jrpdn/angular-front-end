@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     tkn.subscribe(data => this.porcessapi(data['jwt']));
   }
   onGo(f : NgForm) {
-    this.router.navigate(['userpage']);
+    this.router.navigate(['adminpage']);
   }
 
   porcessapi(model : any) {

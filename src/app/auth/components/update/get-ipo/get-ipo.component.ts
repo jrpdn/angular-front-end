@@ -11,12 +11,14 @@ import { NgForm } from '@angular/forms';
 export class GetIpoComponent implements OnInit {
 
   ipodetails : IpodetailsModule[];
-  isPresent:Boolean = false;
   companyname : Text;
   id : number;
 
   request : any;
   response : any;
+
+  head = ['id','companyName','seName','pricePerShare','totalShares','openDateTime','remarks'];
+  headers = [];
 
   responsepage : string[] = [];
   constructor(private authService : AuthService) { }
@@ -24,6 +26,7 @@ export class GetIpoComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit(f:NgForm) {
+    this.headers = this.head
       this.request = {
         "companyName" : this.companyname
       }

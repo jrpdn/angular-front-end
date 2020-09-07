@@ -1,19 +1,15 @@
 <div class="row">
     <div class="col-md-6 offset-md-3 mt-4">
-        <h3>Display Company</h3>
+        <h3>Display Stocks</h3>
         <form #f="ngForm"
               (ngSubmit)="onSubmit(f)">
-<div class="form-group col-md-6">
+<!-- <div class="form-group col-md-6">
     <label for="inputcname">Company Name</label>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" class="form-control" id="inputcname" [(ngModel)]="companycode" name="cname">
-</div>
+    <input type="text" class="form-control" id="inputcname" [(ngModel)]="seName" name="cname">
+</div> -->
 <button type="submit"
                     [disabled]="f.invalid"
-                    class="btn btn-primary">GetCompany</button>
-                    &nbsp;&nbsp;&nbsp;
-                    <button type="submit" (click)="onDelete()"
-                    [disabled]="f.invalid"
-                    class="btn btn-primary">DeleteCompany</button>
+                    class="btn btn-primary">GetAllStockExchangeDetails</button>
         </form>
     </div>
 </div>
@@ -26,7 +22,7 @@
             {{column}}
         </th>
     </tr>
-    <tr *ngFor='let row of companyDetails'>
+    <tr *ngFor='let row of stockExchange'>
         <td *ngFor='let column of headers'>
                 {{row[column]}}
         </td>

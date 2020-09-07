@@ -10,20 +10,31 @@
 <button type="submit"
                     [disabled]="f.invalid"
                     class="btn btn-primary">GetAllStockExchangeDetails</button>
+                    <br>
                     <h3>Delete Stock</h3>
 <div class="form-group col-md-6">
                                                                 <label for="inputcname">StockExchange  Id</label>
                                                                 <input type="text" class="form-control" id="inputcname" [(ngModel)]="id" name="cname">
                                                             </div>
-<button type="submit" (click)="onDelete()"
+&nbsp;&nbsp;&nbsp;<button type="submit" (click)="onDelete()"
                                                             [disabled]="f.invalid"
                                                             class="btn btn-primary">DeleteStockExchange</button>
         </form>
     </div>
 </div>
-<h2>The Stocks are</h2>
-<div *ngFor="let obj of stockExchange">
-<div *ngFor="let item of obj | keyvalue">
-    {{item.key}}:{{item.value}}
-  </div>
-  </div>
+<br>
+<br>
+<hr>
+  <table id='users'>
+    <caption>For Displaying the Stock Exchanges</caption>
+    <tr>
+        <th id="col" *ngFor='let column of headers'>
+            {{column}}
+        </th>
+    </tr>
+    <tr *ngFor='let row of stockExchange'>
+        <td *ngFor='let column of headers'>
+                {{row[column]}}
+        </td>
+    </tr>
+</table>

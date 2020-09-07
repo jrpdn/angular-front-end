@@ -15,7 +15,7 @@ export class AuthService {
   authUrl1 = "http://localhost:8082/";
 
   token : any;
-  const headers = new HttpHeaders();
+  headers = new HttpHeaders();
   constructor(private http : HttpClient) { }
 
   login(model: any) {
@@ -42,6 +42,10 @@ export class AuthService {
   deleteIpo(model : any) {
     return this.http.delete(this.authUrl1+'ipos/delete/'+model,{headers: this.headers,responseType:'json'});
   }
+
+  getAllIpo() {
+    return this.http.get<IpodetailsModule[]>(this.authUrl1 + 'ipos',{headers: this.headers,responseType:'json'});
+  }
     
 
   updateCompany(model: any) {
@@ -56,8 +60,16 @@ deleteCompany(model : any) {
   return this.http.delete(this.authUrl1+'/companies/delete/'+model,{headers: this.headers,responseType:'json'});
 }
   
+getAllCompanies() {
+  return this.http.get<CompanydetailsModule[]>(this.authUrl1 + 'companies',{headers: this.headers,responseType:'json'});
+}
+
 getStocks(model : any) {
-  return this.http.post<StockdetailsModule[]>(this.authUrl1 + '/sp/id/'+model,{headers: this.headers,responseType:'json'});
+  return this.http.post<StockdetailsModule[]>(this.authUrl1 + 'sp/id/'+model,{headers: this.headers,responseType:'json'});
+}
+
+getStocksByCodeAndName(model : any) {
+  return this.http.post<StockdetailsModule[]>(this.authUrl1 + 'sp/company_code/se_name/duration'+model,{headers: this.headers,responseType:'json'});
 }
 
 updateStocks(model: any) {
@@ -66,6 +78,10 @@ updateStocks(model: any) {
 
 deleteStocks(model : any) {
   return this.http.delete(this.authUrl1 + 'sp/delete/'+ model,{headers: this.headers,responseType:'json'});
+}
+
+getAllStocks() {
+  return this.http.get<StockdetailsModule[]>(this.authUrl1 + 'sp',{headers: this.headers,responseType:'json'});
 }
 
 getStockExchange() {
@@ -77,6 +93,10 @@ updateStockExchange(model: any) {
 }
 
 deleteStockExchange(model : any) {
-  return this.http.delete(this.authUrl1 + 'sp/delete/'+ model,{headers: this.headers,responseType:'json'});
+  return this.http.delete(this.authUrl1 + 'se/delete/'+ model,{headers: this.headers,responseType:'json'});
+}
+
+getAllStockExchange() {
+  return this.http.get<SectorexchangeModule[]>(this.authUrl1 + 'se',{headers: this.headers,responseType:'json'});
 }
 }

@@ -1,15 +1,14 @@
-import { AuthService } from './../../../../shared/services/auth.service';
-import { SectorexchangeModule } from './../../../../sectorexchange/sectorexchange.module';
 import { Component, OnInit } from '@angular/core';
+import { SectorexchangeModule } from 'src/app/sectorexchange/sectorexchange.module';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-get-stock-exchange',
-  templateUrl: './get-stock-exchange.component.html',
-  styleUrls: ['./get-stock-exchange.component.scss']
+  selector: 'app-display-stock-exchange',
+  templateUrl: './display-stock-exchange.component.html',
+  styleUrls: ['./display-stock-exchange.component.scss']
 })
-export class GetStockExchangeComponent implements OnInit {
-
+export class DisplayStockExchangeComponent implements OnInit {
   stockExchange  : SectorexchangeModule[];
   id : number;
   request : any;
@@ -33,15 +32,4 @@ export class GetStockExchangeComponent implements OnInit {
     // });
 }
 
-onDelete() {
-  this.request = {
-    "id" : this.id
-  }
-  const StockExchangeDeleteObserver = {
-    next: x => console.log('Deleted the StockExchange'),
-    error: err => console.log(err)
-  };
-  this.authService.deleteStockExchange(this.request).subscribe(StockExchangeDeleteObserver);
-  this.request = null;
-}
 }

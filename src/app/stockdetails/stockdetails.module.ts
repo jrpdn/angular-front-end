@@ -15,5 +15,5 @@ export class StockdetailsModule {
   companyCode: number;
   seName: string;
   currentPrice: number;
-  date : Date;
+  date : Timestamp<Date>;
  }

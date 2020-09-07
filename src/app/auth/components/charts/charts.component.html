@@ -1,0 +1,69 @@
+<div *ngIf="plot">
+    <div >
+        <label for="inputcs1">Select Company/Sector</label>
+        <!-- <input type="text" class="form-control" id="inputcs1"> -->
+        <select id="inputcs1" class="form-control col-md-3">
+            <option>Company</option>
+           <option>Sector</option>
+        </select>
+        <label for="inputse1">Select Stock Exchange</label>
+        <!-- <input type="text" class="form-control" id="inputcs1"> -->
+        <select id="inputse1" class="form-control col-md-3">
+            <option>BSE</option>
+           <option>NSE</option>
+        </select>
+        <label for="inputname1">Company Code/Sector Name</label>
+        <input type="text" class="form-control" id="inputname1" class="form-control col-md-3" [(ngModel)]='param1'>
+        <label for="inputfrom1">From</label>
+        <input type="datetime-local" class="form-control" id="inputfrom1" class="form-control col-md-3" [(ngModel)]='from'>
+        <label for="inputto1">To</label>
+        <input type="datetime-local" class="form-control" id="inputto1" class="form-control col-md-3" [(ngModel)]='to'>
+    </div>
+    <br>
+    <button *ngIf="single" (click)="togglesingle()">Add Company/Sector</button>
+    <button *ngIf="!single" (click)="togglesingle()">Remove Company/Sector</button>
+    <br>
+    <div *ngIf="!single">
+        <label for="inputcs2">Select Company/Sector 2</label>
+        <!-- <input type="text" class="form-control" id="inputcs1"> -->
+        <select id="inputcs2" class="form-control col-md-3">
+            <option>Company</option>
+           <option>Sector</option>
+        </select>
+        <label for="inputse2">Select Stock Exchange</label>
+        <!-- <input type="text" class="form-control" id="inputcs1"> -->
+        <select id="inputse2" class="form-control col-md-3">
+            <option>BSE</option>
+           <option>NSE</option>
+        </select>
+        <label for="inputname2">Company Code/Sector Name</label>
+        <input type="text" class="form-control" id="inputname2" class="form-control col-md-3" [(ngModel)]='param2'>
+        
+    </div>
+    <button (click)="toggleplot()">Plot</button>
+</div>
+    <br>
+    <!-- dataFormat="JSON" -->
+<div *ngIf="plot">
+    <button (click)="toggleplot()">Close Plot</button>
+    <button *ngIf="!single" (click)="togglediff()">On Same/Different Plot</button>
+    <br>
+    <button *ngIf="bar" (click)="charttype()">line</button>
+    <button *ngIf="!bar" (click)="charttype()">bar</button>
+    <fusioncharts
+        width="100%"
+        height="400"
+        type="timeseries"
+        [dataSource]="dataSource"
+    ></fusioncharts>
+    
+    <div *ngIf="plot && diff">
+    <fusioncharts
+        width="100%"
+        height="400"
+        type="timeseries"
+        [dataSource]="dataSources"
+    ></fusioncharts>
+    </div>
+    <br><br><br>
+</div>

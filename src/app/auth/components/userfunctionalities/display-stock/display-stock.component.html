@@ -6,24 +6,20 @@
 <div class="form-group col-md-6">
     <label for="inputcname">Stock Id</label>
     <input type="number" class="form-control" id="inputcname" [(ngModel)]="stockid" name="cname">
-</div>
+</div>&nbsp;&nbsp;&nbsp;
 <button type="submit"
                     [disabled]="f.invalid"
-                    class="btn btn-primary">GetIPo</button>
- <h3>Delete Stock</h3>
-<div class="form-group col-md-6">
-                                            <label for="inputcname">Company Code</label>
-                                            <input type="text" class="form-control" id="inputcname" [(ngModel)]="companyCode" name="cname">
-                                        </div>
-<button type="submit" (click)="onDelete()"
+                    class="btn btn-primary">Get Stocks</button>
+                    <br><br><hr>
+                    <label for="inputcname">Displaying all the Stocks</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button type="submit" (click)="onAllStocks()"
                                         [disabled]="f.invalid"
-                                        class="btn btn-primary">DeleteStocks</button>
+                                        class="btn btn-primary">Display</button>
         </form>
     </div>
 </div>
 <br>
 <br>
-<hr>
   <table id='users'>
     <caption>For Displaying the Stocks</caption>
     <tr>

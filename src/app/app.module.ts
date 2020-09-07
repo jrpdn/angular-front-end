@@ -14,6 +14,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthModule } from "./auth/auth.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { TimeSeries } from 'fusioncharts/viz/timeseries';
+import {FusionChartsModule} from 'angular-fusioncharts';
+import * as FusionCharts from 'fusioncharts';
+import * as Charts from 'fusioncharts/fusioncharts.charts';
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import * as TimeSerie from 'fusioncharts/fusioncharts.timeseries';
+
+FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, TimeSerie);
+
 @NgModule({
   declarations: [
     AppComponent
@@ -31,7 +40,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SectorexchangeModule,
     SectordetailsModule,
     StockdetailsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FusionChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
