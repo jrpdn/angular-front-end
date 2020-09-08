@@ -46,7 +46,7 @@ export class GetIpoComponent implements OnInit {
       next: x => console.log('Deleted the Ipo'),
       error: err => console.log(err)
     };
-    this.authService.deleteIpo(this.request).subscribe(IpoDeleteObserver);
+    this.authService.deleteIpo(this.id).subscribe(IpoDeleteObserver);
     this.request = null;
   }
 }

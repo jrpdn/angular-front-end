@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!plot">
     <div >
         <label for="inputcs1">Select Company /Sector</label>
         <!-- <input type="text" class="form-control" id="inputcs1"> -->
@@ -43,13 +43,21 @@
     <button (click)="toggleplot()">Plot</button>
 </div>
     <br>
-    <!-- dataFormat="JSON" -->
+    <div *ngFor="let obj of data1">
+        <div *ngFor="let item of obj | keyvalue">
+            {{item.key}}:{{item.value}}
+          </div>
+          </div> 
+    
 <div *ngIf="plot">
+    
     <button (click)="toggleplot()">Close Plot</button>
     <button *ngIf="!single" (click)="togglediff()">On Same/Different Plot</button>
     <br>
     <button *ngIf="bar" (click)="charttype()">line</button>
     <button *ngIf="!bar" (click)="charttype()">bar</button>
+    <p>For Company/Sector 1: Max={{max1}},Min={{min1}},Average={{avg1}},Growth={{growth1}}</p>
+    <p *ngIf="!single">For Company/Sector 2: Max={{max2}},Min={{min2}},Average={{avg2}},Growth={{growth2}}</p>
     <fusioncharts
         width="100%"
         height="400"

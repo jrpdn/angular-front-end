@@ -34,13 +34,15 @@ import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import * as TimeSerie from 'fusioncharts/fusioncharts.timeseries';
 import { LogoutComponent } from './components/logout/logout.component';
 import { LogoutbtComponent } from './components/logoutbt/logoutbt.component';
+import { Charts1Component } from './components/charts1/charts1.component';
+import { ImportexcelComponent } from './components/importexcel/importexcel.component';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, TimeSerie);
 
 
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, ResetPasswordComponent, UserpageComponent, AdminpageComponent, ManagecompanyComponent, ManageexchangeComponent, ManageipoComponent, ProfileComponent, IpoComponent, GetIpoComponent, GetCompanyComponent, GetStocksComponent, ManagestocksComponent, GetStockExchangeComponent, DisplayComapnyComponent, DisplayStockComponent, DisplayStockExchangeComponent, DisplayIpoComponent, ChartsComponent, LogoutComponent, LogoutbtComponent],
+  declarations: [LoginComponent, RegisterComponent, ResetPasswordComponent, UserpageComponent, AdminpageComponent, ManagecompanyComponent, ManageexchangeComponent, ManageipoComponent, ProfileComponent, IpoComponent, GetIpoComponent, GetCompanyComponent, GetStocksComponent, ManagestocksComponent, GetStockExchangeComponent, DisplayComapnyComponent, DisplayStockComponent, DisplayStockExchangeComponent, DisplayIpoComponent, ChartsComponent, LogoutComponent, LogoutbtComponent, Charts1Component, ImportexcelComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

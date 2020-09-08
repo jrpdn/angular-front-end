@@ -1,3 +1,4 @@
+import { StockdetailsModule } from './../../../stockdetails/stockdetails.module';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Timestamp } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
@@ -17,17 +18,16 @@ export class ChartsComponent implements OnInit {
 
   //value1 = (<HTMLSelectElement>document.getElementById('inputcs1')).value;
   // value2 = (<HTMLSelectElement>document.getElementById('inputse1')).value;
-  stockdetails1 : any;
-  stockdetails2 : any;
+  stockdetails1 : StockdetailsModule[];
+  stockdetails2 : StockdetailsModule[];
 
-  data1 : any;
   data2 : any;
    param1 : Text;
 
    request1 :any;
    from : Timestamp<Date>;
    to : Timestamp<Date>;
-
+   data1 : any;
 
   val1 : string= '';
   val2 : string = ''
@@ -39,15 +39,16 @@ export class ChartsComponent implements OnInit {
 
   dataSource: object;
   dataSources: object;
-//  data1 = [
-//     { id:1, companyCode:"1", seName:'1', currentPrice:129, date: "01-01-2020" },
-//     { id:1, companyCode:"1", seName:'1', currentPrice:12, date: "02-01-2020" },
-//     { id:1, companyCode:"1", seName:'1', currentPrice:125, date: "03-01-2020" },
-//     { id:1, companyCode:"1", seName:'1', currentPrice:121, date: "04-01-2020" },
-//     { id:1, companyCode:"1", seName:'1', currentPrice:120, date: "05-01-2020" },
-//     { id:1, companyCode:"1", seName:'1', currentPrice:145, date: "06-01-2020" },
-//     { id:1, companyCode:"1", seName:'1', currentPrice:100, date: "07-01-2020" },
-//   ];
+  max1;max2;min1;min2;avg1;avg2;growth1;growth2;
+  data11 = [
+     { id:1, companyCode:"1", seName:'1', currentPrice:129, date: "01-01-2020" },
+     { id:1, companyCode:"1", seName:'1', currentPrice:12, date: "02-01-2020" },
+     { id:1, companyCode:"1", seName:'1', currentPrice:125, date: "03-01-2020" },
+     { id:1, companyCode:"1", seName:'1', currentPrice:121, date: "04-01-2020" },
+     { id:1, companyCode:"1", seName:'1', currentPrice:120, date: "05-01-2020" },
+     { id:1, companyCode:"1", seName:'1', currentPrice:145, date: "06-01-2020" },
+     { id:1, companyCode:"1", seName:'1', currentPrice:100, date: "07-01-2020" },
+   ];
   // data1 = [
   //   { "id":1, "companyCode":"1", "seName":'1', "currentPrice":129, "Time": "01-01-2020" },
   //   { "id":1, "companyCode":"1", "seName":'1', "currentPrice":12, "Time": "02-01-2020" },
@@ -104,9 +105,13 @@ export class ChartsComponent implements OnInit {
       "type": "number"
     },
     {
-      "name": "Time",
+      "name": "date",
       "type": "date",
-      "format": "%d-%m-%Y"
+      "format": "%Y-%m-%d"
+    },
+    {
+      "name": "CS",
+      "type": "string"
     }
   ];
   chart="line";
@@ -128,7 +133,6 @@ export class ChartsComponent implements OnInit {
     var schemaFetch = fetch(
       'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/schema/line-chart-with-time-axis-schema.json'
     ).then(jsonify);
-
     Promise.all([dataFetch, schemaFetch]).then(res => {
       const data = res[0];
       const schema = res[1];
@@ -164,16 +168,16 @@ export class ChartsComponent implements OnInit {
     this.plotchart();
   }
   toggleplot(){
-    this.str = ["companyCode","sector"];
-    this.request1 = {
-       "companyCode" : this.param1,
-       "seName" : this.value2
-     }
-
-     this.request2 = {
-       "companyCode" : this.param2,
-       "seName" : this.val2
-     }
+    let data5 : any;
+    data5='';
+    data5={
+      "id" : 1,
+      "companyCode" : "q",
+      "seName" : "NSE",
+      "currentPrice" : 1000,
+     "date" : new Date()
+    }
+    this.data1.push(data5)
 
     // if(this.value1==='Sector') {
     //   this.check = 0
@@ -191,16 +195,53 @@ export class ChartsComponent implements OnInit {
     // if(this.single==false && this.data7[0].length<6)
     // for(var i=0;i<this.data7.length;i++) this.data7[i].push("Company/Sector 2");
     if(this.plot){
-      let dat = this.authService.getStocks(this.request1);
-      dat.subscribe(data=>this.stockdetails1=data);
-      let dat1 = this.authService.getStocks(this.request2);
-      dat1.subscribe(data=>this.stockdetails2=data);
-      
-      this.data1=this.stockdetails1;
-      this.data2=this.stockdetails2;
-      // for(var i=0;i<this.data1.length;i++) this.data1[i]["CS"]="Company/Sector 1";
-      // for(var i=0;i<this.data2.length;i++) this.data2[i]["CS"]="Company/Sector 2";
-      this.plotchart();
+      let k :number=0;
+      this.str = ["companyCode","sector"];
+          this.request1 = {
+             "companyCode" : this.param1,
+             "seName" : this.value2
+           }
+          // let dat = this.authService.getStocksBy(this.request1);
+          // dat.subscribe(data=>this.stockdetails1=data);
+          //  this.stockdetails1.forEach(obj => {
+             
+          //  })  
+
+        console.log(this.data1);
+        for(var i=0;i<this.data1.length;i++){
+            this.data1[i]["CS"]="Company/Sector 1";
+           //  let d = FusionCharts.Utils.formatDate(this.data1[i].Time, '%d-%m-%Y');
+           //  this.data1[i].Time = d.toString();
+           this.data1[i].date = this.data1[i].date.substring(0,10);
+   
+            // console.log(this.data1[i].Time);
+         }
+         let t = this.getlimits(this.data1);
+         this.max1=t[0];
+         this.min1=t[1];
+         this.avg1=t[2];
+         this.growth1=t[3];
+        // for(var i=0;i<this.data1.length;i++) this.data1[i]["CS"]="Company/Sector 1";
+        // for(var i=0;i<this.data2.length;i++) this.data2[i]["CS"]="Company/Sector 2";
+        if(this.single==false){
+            this.request2 = {
+                "companyCode" : this.param2,
+                "seName" : this.val2
+            }
+            let dat1 = this.authService.getStocksBy(this.request2);
+            dat1.subscribe(data=>this.stockdetails2=data);
+            this.data2=this.stockdetails2;
+            for(var i=0;i<this.data2.length;i++){
+                this.data2[i]["CS"]="Company/Sector 2";
+                this.data2[i].Time = this.data2[i].Time.substring(0,10);
+            }
+            let t = this.getlimits(this.data2);
+            this.max2=t[0];
+            this.min2=t[1];
+            this.avg2=t[2];
+            this.growth2=t[3];
+        }
+        this.plotchart();
     }
     
   }
@@ -281,6 +322,20 @@ export class ChartsComponent implements OnInit {
         // copy same clipping code here as of line 185
         };
     // this.fetchData();
+  }
+  getlimits(data){
+    let max=data[0].currentPrice;
+    let min=data[0].currentPrice;
+    let count = data.length;
+    let sum = 0;
+    for(let l of data){
+      max = Math.max(max,l.currentPrice);
+      min = Math.min(max,l.currentPrice);
+      sum = sum + l.currentPrice;
+    }
+    let growth = (data[count-1].currentPrice - data[0].currentPrice)/data[0].currentPrice;
+    return [max,min,sum/count,growth];
+
   }
   ngOnInit(): void {
   }

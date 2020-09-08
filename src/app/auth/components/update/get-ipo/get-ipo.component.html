@@ -16,7 +16,7 @@
         <h3>Delete Ipo</h3>
 <div class="form-group col-md-6">
                         <label for="inputcname">Ipo Id</label>
-                        <input type="text" class="form-control" id="inputcname" [(ngModel)]="id" name="cname">
+                        <input type="number" class="form-control" id="inputcname" [(ngModel)]="id" name="cname">
                     </div>
 <button type="submit" (click)="onDelete()"
                     [disabled]="f.invalid"

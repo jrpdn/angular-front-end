@@ -42,6 +42,6 @@ export class GetCompanyComponent implements OnInit {
       next: x => console.log('Deleted the Company'),
       error: err => console.log(err)
     };
-    this.authService.deleteCompany(this.request).subscribe(CompanyDeleteObserver);
+    this.authService.deleteCompany(this.companycode).subscribe(CompanyDeleteObserver);
   }
 }

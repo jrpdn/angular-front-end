@@ -1,3 +1,4 @@
+import { Charts1Component } from './components/charts1/charts1.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { ChartsComponent } from './components/charts/charts.component';
 import { DisplayStockExchangeComponent } from './components/userfunctionalities/display-stock-exchange/display-stock-exchange.component';
