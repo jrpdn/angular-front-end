@@ -39,7 +39,7 @@ export class GetStocksComponent implements OnInit {
       // this.request = {
       //   "companyName" : this.companyname
       // }
-      let dat = this.authService.getStocks(this.request);
+      let dat = this.authService.getStocksBy(this.request);
       dat.subscribe(data=>this.stockDetails=data,);
       // console.log(typeof this.ipodetails);
       //  this.response.Object_forEach(element => {

@@ -167,16 +167,12 @@ export class ChartsComponent implements OnInit {
     this.str = ["companyCode","sector"];
     this.request1 = {
        "companyCode" : this.param1,
-       "seName" : this.value2,
-       "startDate" : this.from,
-       "endDate" : this.to
+       "seName" : this.value2
      }
 
      this.request2 = {
        "companyCode" : this.param2,
-       "seName" : this.val2,
-       "startDate" : this.from,
-       "endDate" : this.to
+       "seName" : this.val2
      }
 
     // if(this.value1==='Sector') {
@@ -195,9 +191,9 @@ export class ChartsComponent implements OnInit {
     // if(this.single==false && this.data7[0].length<6)
     // for(var i=0;i<this.data7.length;i++) this.data7[i].push("Company/Sector 2");
     if(this.plot){
-      let dat = this.authService.getStocksByCodeAndName(this.request1);
+      let dat = this.authService.getStocks(this.request1);
       dat.subscribe(data=>this.stockdetails1=data);
-      let dat1 = this.authService.getStocksByCodeAndName(this.request2);
+      let dat1 = this.authService.getStocks(this.request2);
       dat1.subscribe(data=>this.stockdetails2=data);
       
       this.data1=this.stockdetails1;

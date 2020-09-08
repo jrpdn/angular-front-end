@@ -69,9 +69,14 @@ getAllCompanies() {
   return this.http.get<CompanydetailsModule[]>(this.authUrl1 + 'companies',{headers: this.headers,responseType:'json'});
 }
 
-getStocks(model : number) {
+getStocks(model : any) {
+  return this.http.post(this.authUrl1 + 'sp/company_code/se_name' , model,{headers: this.headers,responseType:'json'});
+}
+
+getStocksBy(model : any) {
   return this.http.post<StockdetailsModule[]>(this.authUrl1 + 'sp/company_code/se_name' , model,{headers: this.headers,responseType:'json'});
 }
+
 
 getStocksByCodeAndName(model : any) {
   return this.http.post(this.authUrl1 + 'sp/company_code/se_name/duration',model,{headers: this.headers,responseType:'json'});
