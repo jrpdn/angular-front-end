@@ -17,5 +17,5 @@ Folder: Microservices contains the backend microservices coded in spring boot<br
 3. Run the angular applicatio using the command ng serve -o<br /><br />
 4. Now got to localhost:4200 for the application.<br />
 <br />
-5. (Optional) In order to test the microservices seperatelyh send all the requests to localhost:8080/<microservice name>/<URL PATH defined in controller><br />
+5. (Optional) In order to test the microservices seperately send all the requests to localhost:8080/\<microservice name\>/\<URL PATH defined in controller\><br />
 
